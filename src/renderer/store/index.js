@@ -1,17 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-import { createPersistedState, createSharedMutations } from 'vuex-electron'
-
+import VuexPersistence from 'vuex-persist'
 import modules from './modules'
+
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
+})
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules,
-  plugins: [
-    createPersistedState(),
-    createSharedMutations()
-  ],
+  plugins: [vuexLocal.plugin],
   strict: process.env.NODE_ENV !== 'production'
 })

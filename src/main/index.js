@@ -2,8 +2,6 @@
 
 import { app, BrowserWindow } from 'electron'
 
-import '../renderer/store'
-
 const hsNetwork = require('./network/hyperswarm').default
 
 /**

@@ -11,5 +11,7 @@
 </script>
 
 <style>
-  /* CSS */
+ 	body {
+	  font-family: "HelveticaNeue-Thin", "Helvetica Neue Thin", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	}
 </style>

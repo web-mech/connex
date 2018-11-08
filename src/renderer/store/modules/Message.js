@@ -12,6 +12,7 @@ const mutations = {
 
 const actions = {
   sendMessage ({ commit }, message) {
+    message = { content: message }
     ipcRenderer.send('send-message', message)
     commit('ADD_MESSAGE', message)
   },

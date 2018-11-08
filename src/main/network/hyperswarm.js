@@ -10,14 +10,14 @@ const topic = crypto.createHash('sha256')
 const sockets = []
 
 export default function connectMain (window) {
+  ipcMain.on('send-message', (event, data) => {
+    console.log(data)
+    sockets.forEach((socket) => {
+      socket.sendMessage({ content: data })
+    })
+  })
   return new Promise((resolve, reject) => {
     console.log('Testing hole-punchability...')
-
-    ipcMain.on('send-message', (data) => {
-      sockets.forEach((socket) => {
-        socket.sendMessage({ content: data })
-      })
-    })
 
     net.discovery.holepunchable((err, yes) => {
       if (err) console.error('Error while testing for holepunch capability', err)
@@ -32,7 +32,6 @@ export default function connectMain (window) {
         sockets.push(socket)
 
         socket.on('message', (data) => {
-          console.log(data)
           window.webContents.send('message-received', data)
         })
 
